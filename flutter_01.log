@@ -1,0 +1,94 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter --no-color run --machine --track-widget-creation --device-id=chrome --start-paused --dart-define=flutter.inspector.structuredErrors=true lib/main.dart
+
+## exception
+
+StateError: Bad state: No running isolate (inspector is not set).
+
+```
+#0      ChromeProxyService.inspector (package:dwds/src/services/chrome_proxy_service.dart:79:7)
+#1      _waitForResumeEventToRunMain.<anonymous closure> (package:dwds/src/dwds_vm_client.dart:464:30)
+#2      _rootRunUnary (dart:async/zone.dart:1546:13)
+#3      _CustomZone.runUnary (dart:async/zone.dart:1429:19)
+#4      _CustomZone.runUnaryGuarded (dart:async/zone.dart:1329:7)
+#5      _BufferingStreamSubscription._sendData (dart:async/stream_impl.dart:381:11)
+#6      _DelayedData.perform (dart:async/stream_impl.dart:573:14)
+#7      _PendingEvents.handleNext (dart:async/stream_impl.dart:678:11)
+#8      _PendingEvents.schedule.<anonymous closure> (dart:async/stream_impl.dart:649:7)
+#9      StackZoneSpecification._run (package:stack_trace/src/stack_zone_specification.dart:207:15)
+#10     StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:48)
+#11     _rootRun (dart:async/zone.dart:1517:47)
+#12     _CustomZone.run (dart:async/zone.dart:1422:19)
+#13     _CustomZone.runGuarded (dart:async/zone.dart:1321:7)
+#14     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1362:23)
+#15     StackZoneSpecification._run (package:stack_trace/src/stack_zone_specification.dart:207:15)
+#16     StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:48)
+#17     _rootRun (dart:async/zone.dart:1525:13)
+#18     _CustomZone.run (dart:async/zone.dart:1422:19)
+#19     _CustomZone.runGuarded (dart:async/zone.dart:1321:7)
+#20     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1362:23)
+#21     _microtaskLoop (dart:async/schedule_microtask.dart:40:21)
+#22     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49:5)
+#23     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:128:13)
+#24     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:195:5)
+```
+
+## flutter doctor
+
+```
+[!] Flutter (Channel stable, 3.29.0, on macOS 13.7.4 22H420 darwin-x64, locale en-IN) [11.4s]
+    • Flutter version 3.29.0 on channel stable at /Applications/projects/FlutterSDK/flutter-old/flutter
+    ! The flutter binary is not on your path. Consider adding /Applications/projects/FlutterSDK/flutter-old/flutter/bin to your path.
+    ! The dart binary is not on your path. Consider adding /Applications/projects/FlutterSDK/flutter-old/flutter/bin to your path.
+    • Upstream repository https://github.com/flutter/flutter.git
+    • Framework revision 35c388afb5 (5 weeks ago), 2025-02-10 12:48:41 -0800
+    • Engine revision f73bfc4522
+    • Dart version 3.7.0
+    • DevTools version 2.42.2
+    • If those were intentional, you can disregard the above warnings; however it is recommended to use "git" directly to perform update checks and upgrades.
+
+[!] Android toolchain - develop for Android devices (Android SDK version 35.0.1) [11.5s]
+    • Android SDK at /Users/isoftcells/Library/Android/sdk
+    ✗ cmdline-tools component is missing
+      Run `path/to/sdkmanager --install "cmdline-tools;latest"`
+      See https://developer.android.com/studio/command-line for more details.
+    ✗ Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/to/macos-android-setup for more details.
+
+[!] Xcode - develop for iOS and macOS (Xcode 15.2) [13.4s]
+    • Xcode at /Applications/Xcode.app/Contents/Developer
+    • Build 15C500b
+    ✗ Unable to find the iPhone Simulator SDK.
+    ✗ CocoaPods installed but not working.
+        You appear to have CocoaPods installed but it is not working.
+        This can happen if the version of Ruby that CocoaPods was installed with is different from the one being used to invoke it.
+        This can usually be fixed by re-installing CocoaPods.
+      For re-installation instructions, see https://guides.cocoapods.org/using/getting-started.html#installation
+
+[✓] Chrome - develop for the web [24ms]
+    • Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[✓] Android Studio (version 2024.3) [23ms]
+    • Android Studio at /Applications/Android Studio.app/Contents
+    • Flutter plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/9212-flutter
+    • Dart plugin can be installed from:
+      🔨 https://plugins.jetbrains.com/plugin/6351-dart
+    • Java version OpenJDK Runtime Environment (build 21.0.5+-12932927-b750.29)
+
+[✓] Connected device (2 available) [2.8s]
+    • macOS (desktop) • macos  • darwin-x64     • macOS 13.7.4 22H420 darwin-x64
+    • Chrome (web)    • chrome • web-javascript • Google Chrome 134.0.6998.89
+    ! Error: Browsing on the local area network for Xent’s iPad. Ensure the device is unlocked and attached with a cable or associated with the same local area network as this Mac.
+      The device must be opted into Developer Mode to connect wirelessly. (code -27)
+
+[✓] Network resources [1,344ms]
+    • All expected network resources are available.
+
+! Doctor found issues in 3 categories.
+```
