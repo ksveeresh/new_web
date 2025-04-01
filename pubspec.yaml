@@ -41,6 +41,7 @@ dependencies:
   firebase_auth:
   firebase_core:
   cloud_firestore:
+  http_interceptor: any
 
 
 dev_dependencies:

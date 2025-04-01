@@ -114,8 +114,8 @@ class Home extends StatelessWidget {
     sProvider = Provider.of<SideMenuProvider>(context);
     sUserData = Provider.of<UserDataProvider>(context);
     final address = Provider.of<AddressProvider>(context);
-    if((sUserData?.user??{}).isNotEmpty){
-      address.loadAddress((sUserData?.user??{})["uid"]);
+    if ((sUserData?.user ?? {}).isNotEmpty) {
+      address.loadAddress((sUserData?.user ?? {})["id"]);
     }
     final width = MediaQuery.of(context).size.width;
     isLargeScreen = width > 800;
@@ -129,7 +129,7 @@ class Home extends StatelessWidget {
             (isLargeScreen ?? false)
                 ? null
                 : IconButton(
-                  icon: const Icon(Icons.menu,color: Colors.white,),
+                  icon: const Icon(Icons.menu, color: Colors.white),
                   onPressed: () => _scaffoldKey.currentState?.openDrawer(),
                 ),
         title: Container(
@@ -148,13 +148,16 @@ class Home extends StatelessWidget {
         ),
         actions: [
           Visibility(
-            visible: (sUserData?.user??{}).isNotEmpty,
+            visible: (sUserData?.user ?? {}).isNotEmpty,
             child: GestureDetector(
               onTap: () {
-                sProvider?.setPage(CartCheckout(callBack: (s) {
-                  provider?.setCart(false);
-
-                }));
+                sProvider?.setPage(
+                  CartCheckout(
+                    callBack: (s) {
+                      provider?.setCart(false);
+                    },
+                  ),
+                );
                 if ((isLargeScreen ?? false)) {
                   if (provider?.showCart ?? false) {
                     provider?.setCart(false);
@@ -184,12 +187,15 @@ class Home extends StatelessWidget {
         ],
       ),
       drawer: (isLargeScreen ?? false) ? null : _drawer(),
-      body:Row(
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
-            width: (isLargeScreen??false)?1000:MediaQuery.of(context).size.width,
-              child: provider?.page ?? Container()
+            width:
+                (isLargeScreen ?? false)
+                    ? 1000
+                    : MediaQuery.of(context).size.width,
+            child: provider?.page ?? Container(),
           ),
         ],
       ),
@@ -198,7 +204,7 @@ class Home extends StatelessWidget {
 
   Widget _drawer() => Container(
     width: 300,
-    color:  Color(0xFF1c5c3c),
+    color: Color(0xFF1c5c3c),
     child: Column(
       children: [
         Image.asset(Asset.string.kLogo, height: 150),
@@ -212,7 +218,13 @@ class Home extends StatelessWidget {
                           _scaffoldKey.currentState?.closeDrawer();
                           loadPage(item);
                         },
-                        title: Text(item,style: const TextStyle(fontSize: 18, color: Colors.white),),
+                        title: Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     )
                     .toList(),
@@ -266,20 +278,17 @@ class Home extends StatelessWidget {
                   ProductDetails(
                     product: s,
                     callback: (s) {
-                      if(s is Map){
-                        if(s.isEmpty){
-
+                      if (s is Map) {
+                        if (s.isEmpty) {
                           if ((isLargeScreen ?? false)) {
                             provider?.setCart(false);
-                          }else{
+                          } else {
                             Navigator.pop(nContext!);
                           }
-
-                        }else{
+                        } else {
                           showLoginSignupDialog(nContext!);
                         }
                       }
-
                     },
                   ),
                 );

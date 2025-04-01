@@ -11,7 +11,6 @@ class AddressProvider with ChangeNotifier {
 
   String? get selectedId => _selectedId;
 
-
   void setAddress(Map<String, dynamic> data, String id) async {
     _firestore
         .collection("users")
@@ -26,22 +25,22 @@ class AddressProvider with ChangeNotifier {
   }
 
   void onAddressSelected(String selectedId) async {
-    _selectedId=selectedId;
+    _selectedId = selectedId;
     notifyListeners();
   }
 
-  Future<void> loadAddress(String id) async {
-    _firestore
-        .collection("users")
-        .doc(id) // User's document
-        .collection("Address")
-        .get()
-        .then((onValue) {
-          _address =
-              onValue.docs.map((doc) {
-                return doc.data();
-              }).toList();
-          notifyListeners();
-        });
+  Future<void> loadAddress(dynamic id) async {
+    // _firestore
+    //     .collection("users")
+    //     .doc(id) // User's document
+    //     .collection("Address")
+    //     .get()
+    //     .then((onValue) {
+    //       _address =
+    //           onValue.docs.map((doc) {
+    //             return doc.data();
+    //           }).toList();
+    //       notifyListeners();
+    //     });
   }
 }
